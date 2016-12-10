@@ -10,14 +10,9 @@ $db = $database->getConnection();
 
 $apt = new Apartment($db);
 //query all
-$request = json_decode(file_get_contents("php://input"));
+$request = json_decode(file_get_contents("php://input"),true); //returns array
 
-if(isset($request->name)) $apt->name = $request->name;
-if(isset($request->longitude)) $apt->longitude = $request->longitude;
-if(isset($request->latitude)) $apt->latitude = $request->latitude;
-
-
-$stmt = $apt->filteredApts();
+$stmt = $apt->filteredApts($request);
 $num = $stmt->rowCount();
 
 $data = array();

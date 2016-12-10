@@ -8,6 +8,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+
 .navbar-brand img{
 	height: 50px!important;
 	width: 50px!important;
@@ -51,9 +52,9 @@ body {
 /* Typography */
 
 p {
-	font-size: 18px;
+	font-size: 12px;
 	line-height: 1.5;
-	color: #8a8e91;
+	color: black;
 }
 
 h1,

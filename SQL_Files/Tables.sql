@@ -1,19 +1,20 @@
-use CS157A_AptDatabase; 
+use cs157a_aptdatabase;
 
 CREATE TABLE Suite(
     suiteId int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    roomNumber int,
     roomSharing boolean,
     price decimal(12,2),
     specifications varchar(255),
     petsAllowed boolean,
-    numberOfRooms int 
+    numberOfRooms int
 );
 
 CREATE TABLE Apartment(
     name varchar(255),
     longitude double,
     latitude double,
+    city varchar(255),
+    state varchar(2) CHECK (state = UPPER(state)),
     PRIMARY KEY(longitude,latitude)
 );
 
@@ -21,28 +22,28 @@ CREATE TABLE Tenant(
     name varchar(255),
     phoneNumber varchar(12) PRIMARY KEY,
     description varchar(255)
-); 
+);
 
 CREATE TABLE Hobbies(
     name varchar(255) PRIMARY KEY
-); 
+);
 
 CREATE TABLE ModeOfTransportation(
     name varchar(255) PRIMARY KEY,
     streetAddress varchar(255)
-); 
+);
 
 CREATE TABLE Bus (
     modeName varchar(255),
     route int,
  	PRIMARY KEY(modeName, route)
-); 
+);
 
 CREATE TABLE Train(
     modeName varchar(25),
     route int,
     PRIMARY KEY (modeName, route)
-); 
+);
 
 CREATE TABLE Stops(
     name varchar(255),
@@ -50,27 +51,27 @@ CREATE TABLE Stops(
     longitude double,
     latitude double,
     PRIMARY KEY (name, stopTime,longitude,latitude)
-); 
+);
 
 CREATE TABLE Stores(
     name varchar(255),
     description varchar(255),
     longitude double,
-    latitude double, 
-    PRIMARY KEY(latitude,longitude)
-); 
+    latitude double,
+    PRIMARY KEY(longitude, latitude)
+);
 
 CREATE TABLE SchoolSystems (
     name varchar(255),
     longitude double,
-    latitude double, 
+    latitude double,
     rating decimal(2,2),
     PRIMARY KEY(longitude,latitude)
-); 
+);
 
 CREATE TABLE Grade(
     gradeLevel int PRIMARY KEY
-); 
+);
 
 
 CREATE TABLE AptHasTrans(
@@ -80,26 +81,26 @@ CREATE TABLE AptHasTrans(
     PRIMARY KEY(aptLongitude, aptLatitude, modeName),
     FOREIGN KEY(aptLongitude,aptLatitude) REFERENCES Apartment(longitude,latitude),
     FOREIGN KEY(modeName) REFERENCES ModeOfTransportation(name)
-); 
+);
 
 CREATE TABLE AptHasSchool(
     aptLongitude double,
     aptLatitude double,
     schoolLongitude double,
-    schoolLatitude double, 
+    schoolLatitude double,
     PRIMARY KEY(aptLongitude, aptLatitude, schoolLongitude, schoolLatitude),
     FOREIGN KEY(aptLongitude,aptLatitude) REFERENCES Apartment(longitude,latitude),
     FOREIGN KEY(schoolLongitude,schoolLatitude) REFERENCES SchoolSystems(longitude,latitude)
-); 
+);
 
 CREATE TABLE AptHasSuites(
-    aptLongitude double, 
-    aptLatitude double, 
-    suiteId int, 
+    aptLongitude double,
+    aptLatitude double,
+    suiteId int,
     PRIMARY KEY(suiteId),
     FOREIGN KEY(aptLongitude,aptLatitude) REFERENCES Apartment(longitude,latitude),
     FOREIGN KEY (suiteId) REFERENCES Suite(suiteId)
-); 
+);
 
 
 CREATE Table TenantHasSuite(
@@ -107,33 +108,59 @@ CREATE Table TenantHasSuite(
     suiteId int,
     FOREIGN KEY(tenPhoneNum) REFERENCES Tenant(phoneNumber),
     FOREIGN KEY(suiteId) REFERENCES Suite(suiteId)
-); 
+);
 
 CREATE TABLE BusStops(
     modeName varchar(255),
     route int,
     stopName varchar(255),
     stopTime varchar(255),
-    longitude double, 
-    latitude double, 
+    longitude double,
+    latitude double,
     PRIMARY KEY(modeName, route, stopName, stopTime, longitude, latitude),
     FOREIGN KEY(modeName,route) REFERENCES Bus(modeName,route),
     FOREIGN KEY(stopName,stopTime,longitude,latitude) REFERENCES Stops(name, stopTime,longitude,latitude)
- ); 
+ );
 
 CREATE TABLE TrainStops(
     modeName varchar(255),
     route int,
     stopName varchar(255),
     stopTime varchar(255),
-    longitude double, 
-    latitude double, 
+    longitude double,
+    latitude double,
     PRIMARY KEY(modeName, route, stopName, stopTime, longitude, latitude),
     FOREIGN KEY(modeName,route) REFERENCES Train(modeName,route),
     FOREIGN KEY(stopName,stopTime,longitude,latitude) REFERENCES Stops(name, stopTime,longitude,latitude)
- ); 
+ );
 
 
-    
+CREATE TABLE AptHasStore(
+    aptLongitude double,
+    aptLatitude double,
+    storeLongitude double,
+    storeLatitude double,
+	PRIMARY KEY (aptLongitude , aptLatitude, storeLongitude, storeLatitude),
+	FOREIGN KEY (aptLongitude, aptLatitude) REFERENCES Apartment(longitude,latitude) ,
+	FOREIGN KEY (storeLongitude, storeLatitude) REFERENCES Stores(longitude,latitude)
+
+);
+
+CREATE TABLE TenantHobbies(
+	tenantPhoneNumber varchar(255),
+	hobbyName varchar(255),
+	PRIMARY KEY(tenantPhoneNumber, hobbyName),
+	FOREIGN KEY (tenantPhoneNumber) REFERENCES Tenant(phoneNumber) ,
+	FOREIGN KEY (hobbyName) REFERENCES Hobbies(name)
+);
 
 
+CREATE TABLE SchoolSystemHasGrades(
+	schoolLongitude double,
+  schoolLatitude double,
+	gradeLevel int,
+	PRIMARY KEY( schoolLongitude, schoolLatitude, gradeLevel),
+	FOREIGN KEY(schoolLongitude, schoolLatitude ) REFERENCES SchoolSystems(longitude,latitude),
+	FOREIGN KEY(gradeLevel) REFERENCES Grade(gradeLevel)
+
+);

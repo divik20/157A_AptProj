@@ -4,52 +4,37 @@ class Suite{
 
   private $conn;
 
-  //attributes of table
-  public $roomNumber;
-  public $roomSharing;
-  public $price;
-  public $specifications;
-  public $petsAllowed;
-  public $numberOfRooms;
-
   //constructor
   public function __construct($db){
     $this->conn = $db;
   }
 
-  function getAll(){
+  function getAll($request){
+    $query = "Select * FROM suite s
+    INNER JOIN apthassuites h
+    ON h.aptLongitude =".$request['longitude']." AND h.aptLatitude =". $request['latitude']." AND s.suiteId = h.suiteId";
 
-    $query = "SELECT * FROM Suite";
+    if(isset($request['petsAllowed'])) $query.= " WHERE s.petsAllowed = " + $request['petsAllowed'];
+
+
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
 
     return $stmt;
   }
 
-  function filteredApts(){
+  function getSuiteTenants($suiteId){
 
-      $query = "SELECT name,longitude,latitude
-              FROM Apartment
-              WHERE name = ?";
+    $query = "Select t.name,t.phoneNumber,t.description FROM tenant t
+    JOIN tenanthassuite x
+    ON x.suiteId =".$suiteId." AND x.tenPhoneNum = t.phoneNumber
+    ORDER BY t.name ASC";
 
-      if(isset($longitude)){
-         $longitude = floatval($longitude);
-         $query = $query.",longitude = ?";
-      }
-      if(isset($latitude)){
-         $latitude = floatval($latitude);
-         $query = $query.",latitude = ?";
-      }
-      $stmt = $this->conn->prepare($query);
-      $stmt->bindParam(1,$this->name);
+    $stmt2 = $this->conn->prepare($query);
+    $stmt2-> execute();
 
-      if(isset($longitude)) $stmt->bindParam(2,$this->longitude);
-      if(isset($latitude))  $stmt->bindParam(3,$this->latitude);
-
-
-      $stmt->execute();
-      return $stmt;
-    }
+    return $stmt2;
+  }
 
 }
 

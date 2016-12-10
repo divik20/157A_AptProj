@@ -42,6 +42,7 @@
     <!--- angular scripts -->
     <script src="js/angular.min.js"></script>
     <script src="js/angular-ui-router.min.js"></script>
+    <script src="js/angu-fixed-header-table.js"></script>
     <script src="app/app.js"></script>
 
 
@@ -86,79 +87,123 @@
         <div class="container input-fields">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="name">Apt Name:</label>
-                    <input type="text" ng-model="aptName" class="form-control" id="name">
+                    <label for="aptName">Apt Name:</label>
+                    <input type="text" ng-model="form.aptName" class="form-control" id="aptName">
                 </div>
                 <div class="form-group">
-                    <label for="long">longitude:</label>
-                    <input type="number" ng-model="longitude" class="form-control" id="long">
+                    <label for="city">City:</label>
+                    <input type="text" ng-model="form.city" class="form-control" id="city">
+                </div>
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <input type="text" ng-model="form.state" class="form-control" id="state">
                 </div>
                 <div class="form-group">
                     <label for="numberOfRooms">Num. of Rooms:</label>
-                    <input type="number" ng-model="numOfRooms" class="form-control" id="numberOfRooms">
+                    <input type="number" ng-model="form.numberOfRooms" class="form-control" id="numberOfRooms">
                 </div>
                 <div class="form-group">
-                    <label for="lat">latitude:</label>
-                    <input type="number" ng-model="latitude" class="form-control" id="lat">
+                    <label for="priceMin">Price Min:</label>
+                    <input type="number" ng-model="form.priceMin" class="form-control" id="priceMin">
                 </div>
                 <div class="form-group">
-                    <label for="min">Price Min:</label>
-                    <input type="number" ng-model="priceMin" class="form-control" id="min">
-                </div>
-                <div class="form-group">
-                    <label for="max">Price Max:</label>
-                    <input type="number" ng-model="priceMax" class="form-control" id="max">
+                    <label for="priceMax">Price Max:</label>
+                    <input type="number" ng-model="form.priceMax" class="form-control" id="priceMax">
                 </div>
                 <div class="form-group">
                     <label for="schoolName">School Name:</label>
-                    <input type="text" ng-model="schoolName" class="form-control" id="schoolName">
+                    <input type="text" ng-model="form.schoolName" class="form-control" id="schoolName">
                 </div>
                 <div class="form-group">
                     <label for="ratingMin">Rating Min:</label>
-                    <input type="number" step="0.01" ng-model="longitude" class="form-control" id="ratingMin">
+                    <input type="number" step="0.01" ng-model="form.ratingMin" class="form-control" id="ratingMin">
                 </div>
                 <div class="form-group">
                     <label for="ratingMax">Rating Max:</label>
-                    <input type="number" step="0.01" ng-model="numOfRooms" class="form-control" id="ratingMax">
+                    <input type="number" step="0.01" ng-model="form.ratingMax" class="form-control" id="ratingMax">
                 </div>
                 <div class="form-group">
-                    <label for="grades">Grade Levels:</label>
-                    <input type="number" ng-model="gradeLevel" class="form-control" id="grades">
+                    <label for="gradeLevel">Grade Levels:</label>
+                    <input type="number" ng-model="form.gradeLevel" class="form-control" id="gradeLevel">
                 </div>
-                <button class="btn btn-info" ng-click="filterAptBy({
-              'name':aptName, 'longitude': longitude, 'latitude':latitude
-            })">Submit</button>
+                <button class="btn btn-info" ng-click="filterAptBy()">Submit</button>
                 <div class="container checkboxLists">
-                    <label class="checkbox-inline"><input type="checkbox" value="">Room Sharing</label>
-                    <label class="checkbox-inline"><input type="checkbox" value="">Pets Allowed</label>
-                    <label class="checkbox-inline"><input type="checkbox" value="">Nearby Schools</label>
-                    <label class="checkbox-inline"><input type="checkbox" value="">Nearby Buses</label>
-                    <label class="checkbox-inline"><input type="checkbox" value="">Nearby Trains</label>
+                    <label class="checkbox-inline"><input type="checkbox" ng-model = "form.roomSharing" ng-true-value=1 ng-false-value=0>Room Sharing</label>
+                    <label class="checkbox-inline"><input type="checkbox" ng-model = "form.petsAllowed" ng-true-value=1 ng-false-value=0>Pets Allowed</label>
+                    <label class="checkbox-inline"><input type="checkbox" ng-model = "form.hasNearbyTrans" ng-true-value=1 ng-false-value=0>Nearby Transportation</label>
                 </div>
-
             </form>
         </div>
-
-
-
 
         <div class="container resultsContainer">
             <div class="row">
                 <div class="col s12">
                     <h2 class="text-align-center">Apartments</h2>
-                    <table class="table table-hover">
+                    <div class = "extraInformation jumbotron container">
+                        <h5>{{scope.extraInfoTitle}}</h5>
+                        <p>
+                            {{scope.extraInfoDetails}}
+                        </p>
+                    </div>
+                    <h6 class ="countNumber">Showing {{apartments.length}} Results</h6>
+                    <table class="table table-hover aptTable" fixed-header>
                         <thead>
                             <tr>
-                                <th class="text-align-center">Apt Name</th>
-                                <th class="width-30-pct">Longitude</th>
-                                <th class="width-30-pct">Latitude</th>
+                                <th class="text-align-center">Apt Information</th>
+                                <th class="width-30-pct">Nearby Transportation</th>
+                                <th class="width-30-pct">Nearby Schools</th>
+                                <th class="width-30-pct">Nearby Stores</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="d in apartments">
-                                <td class="text-align-center">{{ d.name }}</td>
-                                <td>{{ d.longitude }}</td>
-                                <td>{{ d.latitude }}</td>
+                            <tr ng-repeat-start="d in apartments">
+                                <td class="text-align-center" ng-click ="select(d)">
+                                        <p class="aptHeader"><b>{{d.name}}</b></p>
+                                        <p class ="aptDescription">
+                                            {{d.city}},{{d.state}}
+                                            <br />
+                                            ({{d.longitude}},{{d.latitude}})
+                                        </p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr ng-if= "d.expanded" ng-repeat-end ="">
+                              <td colspan="5">
+                                    <table class ="table table-bordered">
+                                      <thead class ="header">
+                                        <tr>
+                                            <th class="text-align-center">Suites</th>
+                                            <th class="width-30-pct">Price</th>
+                                            <th class="width-30-pct">Pets</th>
+                                            <th class="width-30-pct"># of Rooms</th>
+                                            <th class="width-30-pct">Room Sharing</th>
+                                            <th class="width-30-pct">Specifications</th>
+                                            <th class="width-30-pct">Tenants</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr ng-repeat = "s in selectedRes">
+                                          <td class="text-align-center">{{s.suiteId}}</td>
+                                          <td>${{s.price}}</td>
+                                          <td>{{s.petsAllowed}}</td>
+                                          <td>{{s.numberOfRooms}}</td>
+                                          <td>{{s.roomSharing}}</td>
+                                          <td><p class="specifications">
+                                            {{s.specifications}}
+                                          </p></td>
+                                          <td>
+                                            <ul ng-repeat = "t in s.tenants">
+                                              <b>{{t.name}}</b>
+                                                <li>{{t.description}}</li>
+                                                <li>{{t.phoneNumber}}</li>
+                                            </ul>
+                                            </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                               </td>
                             </tr>
                         </tbody>
                     </table>

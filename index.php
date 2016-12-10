@@ -76,8 +76,62 @@
 				<div class="header-text">
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<h3 class="light white">Having trouble finding apartments?</h3>
-							<h1 class="white typed">Search no further!</h1>
+							<h3 class="light white">PROJECT NAME: BlueSwift</h3>
+							<p class="white">
+								Team Members: Sridivya Kondapalli, LingFang Gao, Archana Yadawa,
+								Daksha Divakar, Sandeep Samra
+							</p>
+							<h6 class="light white">
+
+									RELATIONS:
+									<br />
+									1. Suite (124)
+									<br />
+									2. Apartment (40)
+									<br />
+
+									3. Tenant (137)
+									<br />
+
+									4. Hobbies (153)
+									<br />
+
+									5. SchoolSystems (40)
+									<br />
+
+ 									6. Grade (14)
+									<br />
+
+									7. ModeOfTransportation (4)
+									<br />
+
+									8. Bus (4)
+									<br />
+
+									9. Train (10)
+									<br />
+
+									10. Stops (163)
+									<br />
+
+									11. AptHasSuites (124)
+									<br />
+
+									12. AptHasSchool (40)
+									<br />
+
+									13. TenantHasSuite (137)
+									<br />
+
+									14. TenantHobbies (158)
+									<br />
+
+									16. Stores (106)
+									<br />
+
+
+
+							</h3>
 							<span class="typed-cursor">|</span>
 						</div>
 					</div>
