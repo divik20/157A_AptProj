@@ -3,6 +3,27 @@ body{
   font-size:14px!important;
   color:black;
 }
+
+.resultsIndividual h4{
+  margin-right: 2%!important;
+}
+.individualTables table{
+  background-color:white;
+  margin-top:5%;
+}
+
+.indivdualTables thead th{
+  background-color:blue;
+  color:white;
+}
+
+header .projectInfo{
+  padding-top:15%!important;
+}
+
+.orderedListTables {
+  font-size:14px;
+}
 .specifications p{
   font-size: 12px;
   color:black;

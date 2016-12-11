@@ -5,11 +5,33 @@ app.controller('listCtrl', function($scope, $http) {
     var suiteCachePets = {};
     // more angular JS codes will be here
     $http.get(baseName + "getApartments.php").success(function(data) {
-        //console.log("Data: " + JSON.stringify(data.results));
+        console.log("Data: " + JSON.stringify(data.results));
         $scope.apartments = data.results;
     }).error(function(data) {
         console.log("Error:" + data);
     });
+
+
+
+    $scope.switchBool = function(value) {
+        $scope[value] = !$scope[value];
+    };
+
+    $scope.getQueryResults = function(){
+      var queryJSON = {"query": $scope.form.query};
+      console.log(JSON.stringify(queryJSON));
+
+      $http.post(baseName + "executeQuery.php", queryJSON).success(function(data) {
+          $scope.successTextAlert = "Query executed successfully!";
+          $scope.showSuccessAlert = true;
+          $scope.rows = data.results;
+          $scope.cols = Object.keys($scope.rows[0]);
+      }).error(function(data) {
+        $scope.failureTextAlert = "Query Failed!";
+        $scope.showFailureAlert = true;
+      });
+
+    };
 
     $scope.filterAptBy = function() {
         $scope.original = {};
@@ -48,25 +70,23 @@ app.controller('listCtrl', function($scope, $http) {
             "latitude": apt.latitude
         };
         var res = apt.longitude + "" + apt.latitude;
-            if (apt.expanded && !suiteCache[res]) {
-                suiteRequest(suiteCache,data,res);
-            } else if (apt.expanded && suiteCache.res) {
-                $scope.selectedRes = suiteCache.res;
-            }
+        if (apt.expanded && !suiteCache[res]) {
+            suiteRequest(suiteCache, data, res);
+        } else if (apt.expanded && suiteCache.res) {
+            $scope.selectedRes = suiteCache.res;
+        }
     };
 
 
-    function suiteRequest(cache,data,res){
+    function suiteRequest(cache, data, res) {
 
-      $http.post(baseName + "getSuites.php", data).success(function(data) {
-          //console.log("Response:" + JSON.stringify(data.results));
-          cache[res] = data.results;
-          $scope.selectedRes = data.results;
-      }).error(function(data) {
-          console.log("Error " + data);
-      });
-
-
+        $http.post(baseName + "getSuites.php", data).success(function(data) {
+            //console.log("Response:" + JSON.stringify(data.results));
+            cache[res] = data.results;
+            $scope.selectedRes = data.results;
+        }).error(function(data) {
+            console.log("Error " + data);
+        });
 
     }
 
@@ -74,4 +94,21 @@ app.controller('listCtrl', function($scope, $http) {
         $scope.form = angular.copy($scope.original);
 
     }
+
+
+
+}).controller('individualsCtrl', function($scope, $http) {
+    var baseName = "../config/";
+    $scope.individualTablesInit = function(tableName) {
+        var table = {
+            "table": tableName
+        };
+        $http.post(baseName + "process.php", table).success(function(data) {
+            //console.log("Response:" + JSON.stringify(data.results));
+            $scope[tableName] = data.results;
+        }).error(function(data) {
+            console.log("Error " + data);
+        });
+
+    };
 });

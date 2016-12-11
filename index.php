@@ -62,7 +62,7 @@
 				<ul class="nav navbar-nav navbar-right main-nav">
 					<li><a href="/">Welcome</a></li>
 					<li><a href="filter.html">Search</a></li>
-					<li><a href="#pricing">Create</a></li>
+					<li><a href="ad-hocQuery.html">Ad-hoc</a></li>
 					<!--<li><a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue"></a></li>-->
 				</ul>
 			</div>
@@ -71,73 +71,43 @@
 		<!-- /.container-fluid -->
 	</nav>
 	<header id="intro">
-		<div class="container">
-			<div class="table">
-				<div class="header-text">
+		<div class="container projectInfo">
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<h3 class="light white">PROJECT NAME: BlueSwift</h3>
-							<p class="white">
-								Team Members: Sridivya Kondapalli, LingFang Gao, Archana Yadawa,
-								Daksha Divakar, Sandeep Samra
-							</p>
-							<h6 class="light white">
-
-									RELATIONS:
-									<br />
-									1. Suite (124)
-									<br />
-									2. Apartment (40)
-									<br />
-
-									3. Tenant (137)
-									<br />
-
-									4. Hobbies (153)
-									<br />
-
-									5. SchoolSystems (40)
-									<br />
-
- 									6. Grade (14)
-									<br />
-
-									7. ModeOfTransportation (4)
-									<br />
-
-									8. Bus (4)
-									<br />
-
-									9. Train (10)
-									<br />
-
-									10. Stops (163)
-									<br />
-
-									11. AptHasSuites (124)
-									<br />
-
-									12. AptHasSchool (40)
-									<br />
-
-									13. TenantHasSuite (137)
-									<br />
-
-									14. TenantHobbies (158)
-									<br />
-
-									16. Stores (106)
-									<br />
-
-
-
-							</h3>
+							<h1 class="light white typed"><b>PROJECT NAME: BlueSwift</b></h1>
 							<span class="typed-cursor">|</span>
+							<br />
+							<div class = "container">
+								<h6 class="white text-center">
+									Team Members: Sridivya Kondapalli, LingFang Gao, Archana Yadawa,
+									Daksha Divakar, Sandeep Samra
+								</h6>
+							</div>
+							<h3 class = "light white"><b>Relations:</b></h3>
+							<div class = "container">
+								<div class = "jumbotron">
+									<ol class = "orderedListTables" ng-controller = "individualCtrl">
+										<li><a href ="individuals/Suites.html">Suite (124)</a></li>
+										<li><a href ="individuals/Apartments.html">Apartment (40)</a></li>
+										<li><a href ="individuals/Tenants.html">Tenant (137)</a></li>
+										<li><a href ="individuals/Hobbies.html">Hobbies (153)</a></li>
+										<li><a href ="individuals/SchoolSystems.html">School Systems (40)</a></li>
+										<li><a href ="individuals/Grades.html">Grade (14)</a></li>
+										<li><a href ="individuals/ModeOfTransportation.html">Mode Of Transportation (4)</a></li>
+										<li><a href ="individuals/Bus.html">Bus (4)</a></li>
+										<li><a href ="individuals/Train.html">Train (10)</a></li>
+										<li><a href ="individuals/Stops.html">Stops (163)</a></li>
+										<li><a href ="individuals/AptHasSuites.html">AptHasSuites (124)</a></li>
+										<li><a href ="individuals/AptHasSchool.html">AptHasSchool (40)</a></li>
+										<li><a href ="individuals/TenantHasSuite.html">TenantHasSuite (137)</a></li>
+										<li><a href ="individuals/TenantHobbies.html">TenantHobbies (158)</a></li>
+										<li><a href ="individuals/Stores.html">Stores (106)</a></li>
+									</ol>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
 	</header>
 	<footer>
 		<div class="container">

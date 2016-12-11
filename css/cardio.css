@@ -130,6 +130,8 @@ header .table {
 
 header .container {
 	height: 100%;
+	padding-top:7%;
+	padding-bottom:-2%;
 }
 
 header .header-text {
@@ -201,13 +203,12 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 	display: inline-block;
 	padding: 15px 30px;
 	color: white;
-	background-color: #31b0d5;
 	border: 2px solid transparent;
 	border-radius: 2px;
 	-webkit-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 }
-
+/*
 .btn:hover,
 .btn:focus {
 	color: white;
@@ -254,7 +255,7 @@ nav.navbar-fixed-top .navbar-nav > li > a:not(.btn) {
 	border-color: #bbb;
 	background: #bbb;
 }
-
+*/
 /* Blink Cursor */
 
 .blink {
@@ -732,12 +733,13 @@ footer .social-footer li:hover a {
 .form-control {
 	font-size: 18px;
 	position: relative;
-	left: 0;
 	height: auto;
 	padding: 20px 30px;
 	border: 1px;
 	border-radius: 0;
 	box-shadow: 0;
+	width: 500px;
+	
 }
 
 .form-control.form-white {

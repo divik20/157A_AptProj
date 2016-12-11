@@ -1,0 +1,70 @@
+<html ng-app="swiftApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blue Swift</title>
+    <meta name="description" content="Blue Swift is your one home for all your apartment searches!" />
+    <meta name="keywords" content="html template, css, free, one page, gym, fitness, web design" />
+    <meta name="author" content="" />
+    <!-- Favicons (created with http://realfavicongenerator.net/)-->
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="icon" type="image/png" href="img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="img/favicons/manifest.json">
+    <link rel="shortcut icon" href="img/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00a8ff">
+    <meta name="msapplication-config" content="img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Normalize -->
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <!-- Owl -->
+    <link rel="stylesheet" type="text/css" href="../css/owl.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" type="text/css" href="../css/animate.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+    <!-- Elegant Icons -->
+    <link rel="stylesheet" type="text/css" href="../fonts/eleganticons/et-icons.css">
+    <!-- Main style -->
+    <link rel="stylesheet" type="text/css" href="../css/cardio.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+
+
+    <!--- angular scripts -->
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/angular-ui-router.min.js"></script>
+    <script src="../js/angu-fixed-header-table.js"></script>
+    <script src="../app/app.js"></script>
+
+
+</head>
+
+<body ng-controller ="individualsCtrl">
+  <div class = "resultsIndividual container">
+    <button class="btn btn-default"><a href ="..\index.php">Back</a></button>
+    <h4 class="white">Showing {{tenant.length}} results: </h4>
+  </div>
+
+    <div class="container individualTables">
+        <table class="table table-bordered table-hover" ng-init = "individualTablesInit('tenant')">
+            <thead>
+                <th>name</th>
+                <th>phoneNumber</th>
+                <th>description</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat= "t in tenant">
+                <td>{{t.name}}</td>
+                <td>{{t.phoneNumber}}</td>
+                <td>{{t.description}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
