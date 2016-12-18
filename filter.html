@@ -112,25 +112,25 @@
                 </div>
                 <div class="form-group">
                     <label for="schoolName">School Name:</label>
-                    <input type="text" ng-model="form.schoolName" class="form-control" id="schoolName">
+                    <input disabled="UnSupported for now" type="text" ng-model="form.schoolName" class="form-control" id="schoolName">
                 </div>
                 <div class="form-group">
                     <label for="ratingMin">Rating Min:</label>
-                    <input type="number" step="0.01" ng-model="form.ratingMin" class="form-control" id="ratingMin">
+                    <input disabled="UnSupported for now"  type="number" step="0.01" ng-model="form.ratingMin" class="form-control" id="ratingMin">
                 </div>
                 <div class="form-group">
                     <label for="ratingMax">Rating Max:</label>
-                    <input type="number" step="0.01" ng-model="form.ratingMax" class="form-control" id="ratingMax">
+                    <input disabled="UnSupported for now"  type="number" step="0.01" ng-model="form.ratingMax" class="form-control" id="ratingMax">
                 </div>
                 <div class="form-group">
                     <label for="gradeLevel">Grade Levels:</label>
-                    <input type="number" ng-model="form.gradeLevel" class="form-control" id="gradeLevel">
+                    <input disabled="UnSupported for now"  type="number" ng-model="form.gradeLevel" class="form-control" id="gradeLevel">
                 </div>
                 <button class="btn btn-info" ng-click="filterAptBy()">Submit</button>
                 <div class="container checkboxLists">
                     <label class="checkbox-inline"><input type="checkbox" ng-model = "form.roomSharing" ng-true-value=1 ng-false-value=0>Room Sharing</label>
                     <label class="checkbox-inline"><input type="checkbox" ng-model = "form.petsAllowed" ng-true-value=1 ng-false-value=0>Pets Allowed</label>
-                    <label class="checkbox-inline"><input type="checkbox" ng-model = "form.hasNearbyTrans" ng-true-value=1 ng-false-value=0>Nearby Transportation</label>
+                    <label class="checkbox-inline"><input disabled type="checkbox" ng-model = "form.hasNearbyTrans" ng-true-value=1 ng-false-value=0>Nearby Transportation</label>
                 </div>
             </form>
         </div>
@@ -165,9 +165,9 @@
                                             ({{d.longitude}},{{d.latitude}})
                                         </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{d.hasNearbyTrans}}</td>
+                                <td>{{d.hasNearbySchools}}</td>
+                                <td>{{d.hasNearbyStores}}</td>
                             </tr>
                             <tr ng-if= "d.expanded" ng-repeat-end ="">
                               <td colspan="5">

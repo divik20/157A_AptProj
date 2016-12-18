@@ -16,6 +16,7 @@ LOAD DATA INFILE 'C:\\xampp\\htdocs\\BlueSwift\\SQL_Files\\AptHasTrans.csv' INTO
 LOAD DATA INFILE 'C:\\xampp\\htdocs\\BlueSwift\\SQL_Files\\Grade.csv' INTO TABLE Grade FIELDS TERMINATED BY ',';
 LOAD DATA INFILE 'C:\\xampp\\htdocs\\BlueSwift\\SQL_Files\\Stores.csv' INTO TABLE Stores FIELDS TERMINATED BY ',';
 LOAD DATA INFILE 'C:\\xampp\\htdocs\\BlueSwift\\SQL_Files\\AptHasSuites.csv' INTO TABLE AptHasSuites FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'C:\\xampp\\htdocs\\BlueSwift\\SQL_Files\\AptHasSchool.csv' INTO TABLE AptHasSchool FIELDS TERMINATED BY ',';
 LOAD DATA INFILE 'C:\\xampp\\htdocs\\BlueSwift\\SQL_Files\\AptHasStore.csv' INTO TABLE AptHasStore FIELDS TERMINATED BY ',';
 LOAD DATA INFILE 'C:\\xampp\\htdocs\\BlueSwift\\SQL_Files\\TenantHasSuite.csv' INTO TABLE TenantHasSuite FIELDS TERMINATED BY ',';
 LOAD DATA INFILE 'C:\\xampp\\htdocs\\BlueSwift\\SQL_Files\\TenantHasHobbies.csv' INTO TABLE TenantHobbies FIELDS TERMINATED BY ',';

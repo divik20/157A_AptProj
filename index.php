@@ -86,23 +86,21 @@
 							<h3 class = "light white"><b>Relations:</b></h3>
 							<div class = "container">
 								<div class = "jumbotron">
-									<ol class = "orderedListTables" ng-controller = "individualCtrl">
-										<li><a href ="individuals/Suites.html">Suite (124)</a></li>
-										<li><a href ="individuals/Apartments.html">Apartment (40)</a></li>
-										<li><a href ="individuals/Tenants.html">Tenant (137)</a></li>
-										<li><a href ="individuals/Hobbies.html">Hobbies (153)</a></li>
-										<li><a href ="individuals/SchoolSystems.html">School Systems (40)</a></li>
-										<li><a href ="individuals/Grades.html">Grade (14)</a></li>
-										<li><a href ="individuals/ModeOfTransportation.html">Mode Of Transportation (4)</a></li>
-										<li><a href ="individuals/Bus.html">Bus (4)</a></li>
-										<li><a href ="individuals/Train.html">Train (10)</a></li>
-										<li><a href ="individuals/Stops.html">Stops (163)</a></li>
-										<li><a href ="individuals/AptHasSuites.html">AptHasSuites (124)</a></li>
-										<li><a href ="individuals/AptHasSchool.html">AptHasSchool (40)</a></li>
-										<li><a href ="individuals/TenantHasSuite.html">TenantHasSuite (137)</a></li>
-										<li><a href ="individuals/TenantHobbies.html">TenantHobbies (158)</a></li>
-										<li><a href ="individuals/Stores.html">Stores (106)</a></li>
-									</ol>
+									<ul class = "orderedListTables" ng-controller = "individualCtrl">
+										<li><a href ="individuals/Suite.html">Suite (124)</a>, <a href ="individuals/Apartment.html">Apartment (40)</a></li>
+										<li><a href ="individuals/Tenant.html">Tenant (137)</a>, <a href ="individuals/Hobbies.html">Hobbies (153)</a></li>
+										<li><a href ="individuals/SchoolSystems.html">SchoolSystems (40)</a>, <a href ="individuals/SchoolSystemHasGrades.html">SchoolSystemHasGrades(159)</a></li>
+										<li><a href ="individuals/Grade.html">Grade (14)</a>, <a href ="individuals/ModeOfTransportation.html">Mode Of Transportation (4)</a></li>
+										<li><a href ="individuals/Bus.html">Bus (4)</a>, <a href ="individuals/Train.html">Train (10)</a></li>
+										<li><a href ="individuals/Stops.html">Stops (163)</a>, <a href ="individuals/AptHasSuites.html">AptHasSuites (124)</a></li>
+										<li><a href ="individuals/AptHasSchool.html">AptHasSchool (40)</a>, <a href ="individuals/AptHasTrans.html">AptHasTrans(160)</a></li>
+										<li><a href ="individuals/AptHasStore.html">AptHasStore(94)</a>, <a href ="individuals/TenantHasSuite.html">TenantHasSuite (137)</a></li>
+										<li><a href ="individuals/TenantHobbies.html">TenantHobbies (158)</a>, <a href ="individuals/Stores.html">Stores (106)</a></li>
+										<li><a href ="individuals/BusStops.html">BusStops (143)</a>, <a href ="individuals/TrainStops.html">TrainStops (20)</a></li>
+										<li>
+											<b>Total data: 1830 </b>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>

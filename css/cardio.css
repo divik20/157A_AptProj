@@ -117,7 +117,7 @@ ul.white-list li:before {
 header {
 	position: relative;
 	width: 100%;
-	color: white;
+/*	color: white; */
 	background: rgba(28, 36, 65, 0.93);
 	background: url('../img/header.jpg');
 	background-size: cover;
@@ -739,7 +739,7 @@ footer .social-footer li:hover a {
 	border-radius: 0;
 	box-shadow: 0;
 	width: 500px;
-	
+
 }
 
 .form-control.form-white {

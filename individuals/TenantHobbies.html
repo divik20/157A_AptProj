@@ -53,19 +53,13 @@
     <div class="container individualTables">
         <table class="table table-bordered table-hover" ng-init="individualTablesInit('tenanthobbies')">
             <thead>
-                <th>name</th>
-                <th>longitude</th>
-                <th>latitude</th>
-                <th>city</th>
-                <th>state</th>
+                <th>tenantPhoneNumber</th>
+                <th>hobbyName</th>
             </thead>
             <tbody>
-              <tr ng-repeat= "a in apartment">
-                <td>{{a.name}}</td>
-                <td>{{a.longitude}}</td>
-                <td>{{a.latitude}}</td>
-                <td>{{a.city}}</td>
-                <td>{{a.state}}</td>
+              <tr ng-repeat= "a in tenanthobbies">
+                <td>{{a.tenantPhoneNumber}}</td>
+                <td>{{a.hobbyName}}</td>
               </tr>
             </tbody>
         </table>

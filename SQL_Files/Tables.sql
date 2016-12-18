@@ -65,7 +65,7 @@ CREATE TABLE SchoolSystems (
     name varchar(255),
     longitude double,
     latitude double,
-    rating decimal(2,2),
+    rating decimal(4,2),
     PRIMARY KEY(longitude,latitude)
 );
 
@@ -79,8 +79,8 @@ CREATE TABLE AptHasTrans(
     aptLatitude double,
     modeName varchar(255),
     PRIMARY KEY(aptLongitude, aptLatitude, modeName),
-    FOREIGN KEY(aptLongitude,aptLatitude) REFERENCES Apartment(longitude,latitude),
-    FOREIGN KEY(modeName) REFERENCES ModeOfTransportation(name)
+    FOREIGN KEY(aptLongitude,aptLatitude) REFERENCES Apartment(longitude,latitude)ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(modeName) REFERENCES ModeOfTransportation(name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE AptHasSchool(
@@ -89,8 +89,8 @@ CREATE TABLE AptHasSchool(
     schoolLongitude double,
     schoolLatitude double,
     PRIMARY KEY(aptLongitude, aptLatitude, schoolLongitude, schoolLatitude),
-    FOREIGN KEY(aptLongitude,aptLatitude) REFERENCES Apartment(longitude,latitude),
-    FOREIGN KEY(schoolLongitude,schoolLatitude) REFERENCES SchoolSystems(longitude,latitude)
+    FOREIGN KEY(aptLongitude,aptLatitude) REFERENCES Apartment(longitude,latitude) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(schoolLongitude,schoolLatitude) REFERENCES SchoolSystems(longitude,latitude) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE AptHasSuites(
@@ -98,16 +98,16 @@ CREATE TABLE AptHasSuites(
     aptLatitude double,
     suiteId int,
     PRIMARY KEY(suiteId),
-    FOREIGN KEY(aptLongitude,aptLatitude) REFERENCES Apartment(longitude,latitude),
-    FOREIGN KEY (suiteId) REFERENCES Suite(suiteId)
+    FOREIGN KEY(aptLongitude,aptLatitude) REFERENCES Apartment(longitude,latitude) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (suiteId) REFERENCES Suite(suiteId) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
 CREATE Table TenantHasSuite(
     tenPhoneNum varchar(255) PRIMARY KEY,
     suiteId int,
-    FOREIGN KEY(tenPhoneNum) REFERENCES Tenant(phoneNumber),
-    FOREIGN KEY(suiteId) REFERENCES Suite(suiteId)
+    FOREIGN KEY(tenPhoneNum) REFERENCES Tenant(phoneNumber) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(suiteId) REFERENCES Suite(suiteId) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE BusStops(
@@ -117,9 +117,9 @@ CREATE TABLE BusStops(
     stopTime varchar(255),
     longitude double,
     latitude double,
-    PRIMARY KEY(modeName, route, stopName, stopTime, longitude, latitude),
-    FOREIGN KEY(modeName,route) REFERENCES Bus(modeName,route),
-    FOREIGN KEY(stopName,stopTime,longitude,latitude) REFERENCES Stops(name, stopTime,longitude,latitude)
+    PRIMARY KEY(modeName, route, stopName, stopTime, longitude, latitude) ,
+    FOREIGN KEY(modeName,route) REFERENCES Bus(modeName,route) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(stopName,stopTime,longitude,latitude) REFERENCES Stops(name, stopTime,longitude,latitude) ON DELETE CASCADE ON UPDATE CASCADE
  );
 
 CREATE TABLE TrainStops(
@@ -129,9 +129,9 @@ CREATE TABLE TrainStops(
     stopTime varchar(255),
     longitude double,
     latitude double,
-    PRIMARY KEY(modeName, route, stopName, stopTime, longitude, latitude),
-    FOREIGN KEY(modeName,route) REFERENCES Train(modeName,route),
-    FOREIGN KEY(stopName,stopTime,longitude,latitude) REFERENCES Stops(name, stopTime,longitude,latitude)
+    PRIMARY KEY(modeName, route, stopName, stopTime, longitude, latitude) ,
+    FOREIGN KEY(modeName,route) REFERENCES Train(modeName,route) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(stopName,stopTime,longitude,latitude) REFERENCES Stops(name, stopTime,longitude,latitude) ON DELETE CASCADE ON UPDATE CASCADE
  );
 
 
@@ -141,8 +141,8 @@ CREATE TABLE AptHasStore(
     storeLongitude double,
     storeLatitude double,
 	PRIMARY KEY (aptLongitude , aptLatitude, storeLongitude, storeLatitude),
-	FOREIGN KEY (aptLongitude, aptLatitude) REFERENCES Apartment(longitude,latitude) ,
-	FOREIGN KEY (storeLongitude, storeLatitude) REFERENCES Stores(longitude,latitude)
+	FOREIGN KEY (aptLongitude, aptLatitude) REFERENCES Apartment(longitude,latitude) ON DELETE CASCADE ON UPDATE CASCADE ,
+	FOREIGN KEY (storeLongitude, storeLatitude) REFERENCES Stores(longitude,latitude) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 
@@ -150,17 +150,17 @@ CREATE TABLE TenantHobbies(
 	tenantPhoneNumber varchar(255),
 	hobbyName varchar(255),
 	PRIMARY KEY(tenantPhoneNumber, hobbyName),
-	FOREIGN KEY (tenantPhoneNumber) REFERENCES Tenant(phoneNumber) ,
-	FOREIGN KEY (hobbyName) REFERENCES Hobbies(name)
+	FOREIGN KEY (tenantPhoneNumber) REFERENCES Tenant(phoneNumber) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (hobbyName) REFERENCES Hobbies(name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
 CREATE TABLE SchoolSystemHasGrades(
 	schoolLongitude double,
-  schoolLatitude double,
+    schoolLatitude double,
 	gradeLevel int,
 	PRIMARY KEY( schoolLongitude, schoolLatitude, gradeLevel),
-	FOREIGN KEY(schoolLongitude, schoolLatitude ) REFERENCES SchoolSystems(longitude,latitude),
-	FOREIGN KEY(gradeLevel) REFERENCES Grade(gradeLevel)
+	FOREIGN KEY(schoolLongitude, schoolLatitude ) REFERENCES SchoolSystems(longitude,latitude) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(gradeLevel) REFERENCES Grade(gradeLevel) ON DELETE CASCADE ON UPDATE CASCADE
 
 );

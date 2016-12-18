@@ -1,8 +1,6 @@
 var app = angular.module('swiftApp', ['anguFixedHeaderTable']);
 app.controller('listCtrl', function($scope, $http) {
     var baseName = "config/";
-    var suiteCache = {};
-    var suiteCachePets = {};
     // more angular JS codes will be here
     $http.get(baseName + "getApartments.php").success(function(data) {
         console.log("Data: " + JSON.stringify(data.results));
@@ -17,19 +15,27 @@ app.controller('listCtrl', function($scope, $http) {
         $scope[value] = !$scope[value];
     };
 
-    $scope.getQueryResults = function(){
-      var queryJSON = {"query": $scope.form.query};
-      console.log(JSON.stringify(queryJSON));
+    $scope.getQueryResults = function() {
+        var queryJSON = {
+            "query": $scope.form.query
+        };
+        console.log(JSON.stringify(queryJSON));
 
-      $http.post(baseName + "executeQuery.php", queryJSON).success(function(data) {
-          $scope.successTextAlert = "Query executed successfully!";
-          $scope.showSuccessAlert = true;
-          $scope.rows = data.results;
-          $scope.cols = Object.keys($scope.rows[0]);
-      }).error(function(data) {
-        $scope.failureTextAlert = "Query Failed!";
-        $scope.showFailureAlert = true;
-      });
+        $http.post(baseName + "executeQuery.php", queryJSON).success(function(data) {
+            if (data.results.length !== 0) {
+              $scope.successTextAlert = "Query executed successfully!";
+              $scope.showSuccessAlert = true;
+                $scope.rows = data.results;
+                $scope.cols = Object.keys($scope.rows[0]);
+            }
+            else{
+              $scope.failureTextAlert = "Query Failed!";
+              $scope.showFailureAlert = true;
+            }
+        }).error(function(data) {
+            $scope.failureTextAlert = "Query Failed!";
+            $scope.showFailureAlert = true;
+        });
 
     };
 
@@ -54,7 +60,7 @@ app.controller('listCtrl', function($scope, $http) {
         console.log("Options: " + JSON.stringify(filterQuery));
 
         $http.post(baseName + "filteredApts.php", filterQuery).success(function(data) {
-            console.log("Response:" + data.results);
+            //console.log("Response:" + data.results);
             $scope.apartments = data.results;
         }).error(function(data) {
             console.log("Error " + data);
@@ -69,20 +75,15 @@ app.controller('listCtrl', function($scope, $http) {
             "longitude": apt.longitude,
             "latitude": apt.latitude
         };
-        var res = apt.longitude + "" + apt.latitude;
-        if (apt.expanded && !suiteCache[res]) {
-            suiteRequest(suiteCache, data, res);
-        } else if (apt.expanded && suiteCache.res) {
-            $scope.selectedRes = suiteCache.res;
-        }
+        suiteRequest(data);
+
     };
 
 
-    function suiteRequest(cache, data, res) {
+    function suiteRequest(data) {
 
         $http.post(baseName + "getSuites.php", data).success(function(data) {
             //console.log("Response:" + JSON.stringify(data.results));
-            cache[res] = data.results;
             $scope.selectedRes = data.results;
         }).error(function(data) {
             console.log("Error " + data);
@@ -103,8 +104,9 @@ app.controller('listCtrl', function($scope, $http) {
         var table = {
             "table": tableName
         };
+        console.log("table name: " + tableName);
         $http.post(baseName + "process.php", table).success(function(data) {
-            //console.log("Response:" + JSON.stringify(data.results));
+            console.log("Response:" + JSON.stringify(data.results));
             $scope[tableName] = data.results;
         }).error(function(data) {
             console.log("Error " + data);

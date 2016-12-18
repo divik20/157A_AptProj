@@ -4,6 +4,7 @@ body{
   color:black;
 }
 
+
 .resultsIndividual h4{
   margin-right: 2%!important;
 }
@@ -21,8 +22,10 @@ header .projectInfo{
   padding-top:15%!important;
 }
 
-.orderedListTables {
+.orderedListTables ul{
   font-size:14px;
+  list-style-type: none!important;
+
 }
 .specifications p{
   font-size: 12px;

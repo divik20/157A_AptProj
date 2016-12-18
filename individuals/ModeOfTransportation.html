@@ -47,19 +47,19 @@
 <body ng-controller ="individualsCtrl">
   <div class = "resultsIndividual container">
     <button class="btn btn-default"><a href ="..\index.php">Back</a></button>
-    <h4 class="white">Showing {{train.length}} results: </h4>
+    <h4 class="white">Showing {{modeoftransportation.length}} results: </h4>
   </div>
 
     <div class="container individualTables">
-        <table class="table table-bordered table-hover" ng-init="individualTablesInit('train')">
+        <table class="table table-bordered table-hover" ng-init="individualTablesInit('modeoftransportation')">
             <thead>
-                <th>modeName</th>
-                <th>route</th>
+                <th>name</th>
+                <th>street address</th>
             </thead>
             <tbody>
-              <tr ng-repeat= "a in train">
-                <td>{{a.modeName}}</td>
-                <td>{{a.route}}</td>
+              <tr ng-repeat= "a in modeoftransportation">
+                <td>{{a.name}}</td>
+                <td>{{a.streetAddress}}</td>
               </tr>
             </tbody>
         </table>
